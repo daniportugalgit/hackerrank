@@ -17,4 +17,4 @@ function minimumDistances(list) {
     return smallestDiff;
 }
 
-minimumDistances([0,1,9,2,3,4,5,99,6,7,5,9,-76,1,0,-100,-76]); //should return 1
+minimumDistances([0,1,9,2,3,4,5,99,6,7,5,9,-76,1,0,-100,-76]); //should return 4
