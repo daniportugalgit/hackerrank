@@ -44,5 +44,7 @@ Print a single integer denoting the minimum `d[i,j]` in `a`. If no such value ex
 Here, we have two options:
 
 `a[1]` and `a[4]` are both 1, so `d[1,4] == 1 - 4 == 3`.
+
 `a[0]` and `a[5]` are both 7, so `d[0,5] == 0 - 5 == 5`.
+
 The answer is `min(3,5) == 3`.
