@@ -1,45 +1,76 @@
-'use strict';
+function minimumDistances(list) {
+    //get all pairs from 0 to 9 and store their indexes:
+    let indexedList = getIndexedList(list);
 
-const fs = require('fs');
+    //find numbers that have more than one occurance:
+    let diffList = getSmallestDifference(indexedList);
 
-process.stdin.resume();
-process.stdin.setEncoding('utf-8');
+    //get the smallest diff:
+    let smallestDiff = getSmallestFromList(diffList);
+    if(smallestDiff == Number.MAX_VALUE)
+        smallestDiff = -1;
 
-let inputString = '';
-let currentLine = 0;
-
-process.stdin.on('data', inputStdin => {
-    inputString += inputStdin;
-});
-
-process.stdin.on('end', _ => {
-    inputString = inputString.replace(/\s*$/, '')
-        .split('\n')
-        .map(str => str.replace(/\s*$/, ''));
-
-    main();
-});
-
-function readLine() {
-    return inputString[currentLine++];
+    console.log('indexedList:', JSON.stringify(indexedList));
+    console.log('diffList:', JSON.stringify(diffList));
+    console.log('smallestDiff:', smallestDiff);
 }
 
-// Complete the minimumDistances function below.
-function minimumDistances(a) {
+function getIndexedList(list) {
+    let numbers = getDefaultList();
+    
+    //get all pairs from 0 to 9 and store their indexes:
+    for (let i = 0; i < list.length; i++) {
+        const element = list[i];
+        if(!numbers[element])
+            numbers[element] = [i];
+        else
+            numbers[element].push(i);
+    }
 
-
+    return numbers;
 }
 
-function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+function getDefaultList() {
+    let list = [];
 
-    const n = parseInt(readLine(), 10);
+    for (let i = 0; i < 9; i++)
+        list[i] = [];
 
-    const a = readLine().split(' ').map(aTemp => parseInt(aTemp, 10));
-
-    let result = minimumDistances(a);
-
-    ws.write(result + "\n");
-
-    ws.end();
+    return list;
 }
+
+function getDefaultDiffList() {
+    let list = [];
+
+    for (let i = 0; i < 9; i++)
+        list[i] = -1;
+
+    return list;
+}
+
+function getSmallestDifference(indexedList) {
+    let newList = getDefaultDiffList();
+    for (let i = 0; i < indexedList.length; i++) {
+        const element = indexedList[i];
+        let smallestDiff = Number.MAX_VALUE;
+        
+        for (let j = element.length-1; j >= 0; j--) {
+            const largeValue = element[j];
+            const smallValue = element[j-1];
+            let diff = largeValue - smallValue;
+
+            if(diff < smallestDiff)
+                smallestDiff = diff;
+        }
+
+        newList[i] = smallestDiff;
+    }
+
+    return newList;
+}
+
+function getSmallestFromList(list) {
+    return Math.min(...list);
+}
+
+minimumDistances([0,1,9,2,3,4,5,6,7,5,5,9,1,0]); //should return 1
