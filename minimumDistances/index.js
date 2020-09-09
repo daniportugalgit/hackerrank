@@ -1,5 +1,5 @@
 function minimumDistances(list) {
-    let smallestDiff = 1000; //Number.MAX_VALUE; The problem states that the max value of n is 1000.
+    let smallestDiff = 1001; //Number.MAX_VALUE; The problem states that the max value of n is 1000.
     let mapping = new Map();
 
     for (let i = 0; i < list.length; i++) {
@@ -11,7 +11,7 @@ function minimumDistances(list) {
         mapping.set(list[i], i);
     }
 
-    if(smallestDiff == Number.MAX_VALUE)
+    if(smallestDiff == 1001)
         return -1;
 
     return smallestDiff;
