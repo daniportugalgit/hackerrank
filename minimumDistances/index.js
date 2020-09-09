@@ -1,13 +1,14 @@
 function minimumDistances(list) {
-    let smallestDiff = Number.MAX_VALUE;
+    let smallestDiff = 1000; //Number.MAX_VALUE; The problem states that the max value of n is 1000.
+    let mapping = new Map();
 
     for (let i = 0; i < list.length; i++) {
-        for (let j = 0; j < list.length; j++) {
-            if(list[i] == list[j] && i != j) {
-                //found a pair
-                smallestDiff = Math.min(smallestDiff, Math.abs(j - i));
-            }
+        if(mapping.has(list[i])) {
+            let previousIndex = mapping.get(list[i]);
+            smallestDiff = Math.min(smallestDiff, i - previousIndex);
         }
+
+        mapping.set(list[i], i);
     }
 
     if(smallestDiff == Number.MAX_VALUE)
