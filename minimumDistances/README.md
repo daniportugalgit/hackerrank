@@ -1,4 +1,4 @@
-#Problem
+# Problem
 
 We define the distance between two array values as the number of indices between the two values. Given `a`, find the minimum distance between any pair of equal elements in the array. If no such value exists, print -1.
 
@@ -19,6 +19,7 @@ The second line contains `n` space-separated integers `a[i]`.
 
 ## Constraints
 `1 <= n <= 10**3`
+
 `1 <= a[i] <= 10**5`
 
 ## Output Format
@@ -38,7 +39,8 @@ Print a single integer denoting the minimum `d[i,j]` in `a`. If no such value ex
 3
 ```
 
-Explanation
+## Explanation
+
 Here, we have two options:
 
 `a[1]` and `a[4]` are both 1, so `d[1,4] == 1 - 4 == 3`.
