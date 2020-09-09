@@ -1,28 +1,14 @@
 function minMaxSum(arr) {
-  let maxSum = Number.NEGATIVE_INFINITY;
-  let minSum = Number.POSITIVE_INFINITY;
+  //sort the array
+  arr.sort((a,b) => a-b);
 
-  for (let i = 0; i < arr.length; i++) {
-    let sum = BigInt(arr[i]);
+  //Now the minimum is the sum of the array after removing its last item
+  let min = arr.slice(0, arr.length-1).reduce((a,b) => BigInt(a)+BigInt(b));
 
-    let removedIndex = i+1;
-    if(removedIndex > arr.length-1)
-      removedIndex = 0;
+  //And the maximum is the sum of the array after removing its first item
+  let max = arr.slice(1, arr.length).reduce((a,b) => BigInt(a)+BigInt(b));
 
-    for (let j = 0; j < arr.length; j++) {
-      if(i != j && j != removedIndex) {
-        sum += BigInt(arr[j]);
-      }
-    }
-
-    if(sum < minSum)
-      minSum = sum;
-
-    if(sum > maxSum)
-      maxSum = sum;
-  }
-
-  console.log(minSum, maxSum);
+  console.log(min.toString(), max.toString());
 }
 
 minMaxSum([1,2,3,4,5]); //should print 10 14
