@@ -1,7 +1,7 @@
 function getTotalX (a, b) {
   let validCount = 0;
 
-  for (let x = 1; x < 100; x++) {
+  for (let x = 1; x <= 100; x++) {
     //is x divisible by all the numbers in array a?
     if(a.every(item => (x % item == 0))) {
 
