@@ -1,21 +1,8 @@
 function pageCount(n, p) {
-  //starting from the beginning:
-  if(p == 1 || p == n || (n % 2 != 0 && p == n-1)) {
-    console.log(0); //first or last page; or the page before the last if there is an odd number of pages
-    return;
-  }
+  const pageTurns = Math.floor(p / 2);
+  const totalTurns = Math.floor(n / 2);
 
-  let countFromTheBeginning = Math.floor(p / 2);
-  
-  //starting from the end:
-  let countFromTheEnd = Number.MAX_VALUE;
-  if(n % 2 == 0) {
-    countFromTheEnd = Math.floor((n - p) / 2);
-  } else {
-    countFromTheEnd = Math.ceil((n - p) / 2);
-  }
-
-  console.log(Math.min(countFromTheBeginning, countFromTheEnd));
+  console.log(Math.min(pageTurns, totalTurns - pageTurns));
 }
 
 pageCount(5,3); //should print 1
