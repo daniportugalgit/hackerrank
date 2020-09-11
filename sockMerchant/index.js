@@ -20,8 +20,7 @@ function sockMerchant2(n, ar) {
 
   ar.map(value => {
     if(socksByColor.has(value)) {
-      let previousValue = socksByColor.get(value);
-      socksByColor.set(value, previousValue + 1);
+      socksByColor.set(value, socksByColor.get(value) + 1);
     } else {
       socksByColor.set(value, 1);
     }
